@@ -1,0 +1,49 @@
+# Create virtual environment called "flaskdeploy", flask at the end installs flask into venv
+conda create -n flaskdeploy flask
+
+# To activate this environment, use
+#
+#     conda activate flaskdeploy
+      conda source activate flaskdeploy (if you're on Mac or Linux)
+#
+# To deactivate an active environment, use
+#
+#     conda deactivate
+      conda source deactive (if you're on Mac or Linux)
+
+
+
+
+# green unicorn (gunicorn) is a python web server gateway interface for Unix that let's us serve websites to the web
+pip install gunicorn
+
+# This creates a requirements.txt file
+pip freeze > requirements.txt
+
+# Next, go into the folder and create a Procfile called "Procfile"
+type web: gunicorn app:app
+# Then save those changes, says that we're using gunicorn to run the application called "app"
+
+# Next, login to Heroku
+heroku login
+
+# Initialize empty Git repository
+git init
+
+# Create app with git
+heroku git:remote -a "name-of-app-on-heroku"
+
+# Commit our code to the empty git repository
+git add .
+
+# Add files to the repository
+git commit -am "first commit"
+
+# Need to use Python 3.7 for packages which only works on heroku-18 and heroku-20 stacks
+heroku create --stack heroku-20
+
+# Create a dyno so that website can load via Heroku
+heroku ps:scale web=1
+
+# Push changes to heroku
+git push heroku master
