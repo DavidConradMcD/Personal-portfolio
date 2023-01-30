@@ -1,2 +1,2 @@
-# Personal-portfolio
-Personal portfolio of projects
+# run dashboard
+python app.py
