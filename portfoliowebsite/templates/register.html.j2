@@ -1,0 +1,24 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<form method="post">
+  <!-- we pass hidden_tag to make sure we can accept this form -->
+  {{form.hidden_tag()}}
+  <!-- to add css, call class='' after form.email etc. can pass bootstrap classes -->
+  {{form.email.label}}{{form.email}}<br>
+  {{form.password.label}}{{form.password}}<br>
+  {{form.pass_confirm.label}}{{form.pass_confirm}}<br>
+  {{form.submit()}}
+  {% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }} Error: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+
+{% endblock %}

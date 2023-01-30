@@ -1,0 +1,87 @@
+{%extends "base.html.j2"%}
+{%block content %}
+<p>Also need to check whether file has been uploaded or not</p>
+<p>Then, show a list of files uploaded</p>
+<p>and/or have a table of dates with files to check whether files are uploaded for the respective dates</p>
+
+<div class="container">
+  <div class="jumbotron my-5 w-50" style="margin:auto;">
+    <h1 style="text-align:center;">Upload Ratings</h1>
+    {% for msg in get_flashed_messages() %}
+      {% if msg == 'File Upload Successful' %}
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{msg}}
+        </div>
+      {% elif msg == 'Could not upload, date already exists.' %}
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{msg}}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if form.errors %}
+      {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+        {% for error in field_errors %}
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <li>{{ form[field_name].label }} Error: {{ error }}</li>
+
+        </div>
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
+    <div class="row justify-content-center">
+      <form method="POST" action="" enctype='multipart/form-data'>
+        <!-- we pass hidden_tag to make sure we can accept this form -->
+        {{form.hidden_tag()}}
+        <div class="col-12 my-2">
+          <label for="form.date">Date</label> {{form.date()}}
+        </div>
+        <div class="col-6 my-2">
+          {{form.file()}}
+        </div>
+        <div class="col-6 my-2">
+          {{form.submit()}}
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+
+
+  <div class="jumbotron my-5 w-50" style="margin:auto;">
+    <h1 style="text-align:center;">Ratings Files</h1>
+    <table class='table table-hover table-responsive'>
+      <thead class='thead-light'>
+        <th>#</th>
+        <th>Date</th>
+        <th>Filename</th>
+        <th>Uploaded</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope='row1'>1</th>
+          <td>2022-10-31</td>
+          <td>2022-10-31 ratings.xlsx</td>
+          <td>True</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+
+</div>
+
+{% endblock %}

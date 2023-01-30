@@ -1,0 +1,126 @@
+{% extends "base.html.j2" %}
+{% block content %}
+
+<div class="container">
+    <div class="d-flex my-3 flex-direction-row w-100">
+      <div class="col-12">
+        <h1>View db</h1>
+      </div>
+    </div>
+
+    <div class="d-flex-table my-3 flex-direction-row">
+      <div class="col-12 mx-0">
+        <div class="overflow-auto" style="height: 800px";>
+          <table class="table table-striped table-hover table-bordered">
+            <thead class='thead-dark'>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Date</th>
+                <th scope="col">Security id</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Description</th>
+                <th scope="col">Risk</th>
+                <th scope="col">Objectives</th>
+                <th scope="col">Risk Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for val in values %}
+                <tr>
+                  <td>{{val.id}}</td>
+                  <td>{{val.date}}</td>
+                  <td>{{val.security_id}}</td>
+                  <td>{{val.symbol}}</td>
+                  <td>{{val.description}}</td>
+                  <td>{{val.risk}}</td>
+                  <td>{{val.objectives}}</td>
+                  <td>{{val.risk_explanation}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
+
+
+
+  <div class="input group my-3 mx-3">
+    <form method="POST" action="" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" value={{form.symbol}}>
+
+        </div>
+        <label for="form.symbol">Symbol</label>{{form.symbol}}
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+
+
+  <div class="input group my-3 mx-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="TickerSelect">Symbol</span>
+      <input type="text" class="form-control" placeholder="Symbol" aria-label="Ticker">
+    </div>
+
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="SecurityIDSelect">Security ID</span>
+      <input type="text" class="form-control" placeholder="Security ID" aria-label="Security ID">
+    </div>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="DateSelect">Single Date</label>
+      <select class="custom-select" id="DateSelect" placeholder="Select Date">
+        <option value="Select">2022-10-31</option>
+      </select>
+    </div>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="DateRangeSelect">Date Range</label>
+      <select class="custom-select" id="DateRangeSelect">
+        <option value="2022-10-31">2022-10-31</option>
+      </select>
+    </div>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="DescriptionStartsWithSelect">Description Starts With</label>
+      <input type="text" class="form-control" placeholder="Holdings that start with a given text string. Ex. 'Tactical' for 'Tactical Resources Corp" aria-label="Ticker" aria-describebdy="basic-addon2">
+    </div>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="DescriptionContainsSelect">Description Contains</label>
+      <input type="text" class="form-control" placeholder="Holdings that contain a given text string. Ex. 'resources' for 'Tactical Resources Corp'" aria-label="Ticker" aria-describebdy="basic-addon2">
+    </div>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="DescriptionEndsWithSelect">Description Ends With</label>
+      <input type="text" class="form-control" placeholder="Holdings that end with a given text string. Ex. 'resources corp' for 'Tactical Resources Corp" aria-label="Ticker" aria-describebdy="basic-addon2">
+    </div>
+
+    <div class="input-group-prepend">
+      <button type="button" class="btn btn-success" name="button">Submit</button>
+
+    </div>
+  </div>
+
+
+
+  <div class="d-flex my-3 flex-direction-row">
+    <h1>View db</h1>
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}

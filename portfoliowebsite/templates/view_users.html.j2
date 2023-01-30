@@ -1,0 +1,44 @@
+{% extends "base.html.j2" %}
+{% block content %}
+  {% for item in values %}
+    <p>Username: {{item.username}}, Email: {{item.email}}</p>
+  {% endfor %}
+
+  <style>
+    th, td {padding: 15px}
+  </style>
+<span class="border border-primary">
+  <div class="container-xl">
+    <div class="table-responsive-xl">
+      <div class="display-4">
+        Users Table
+      </div>
+      <div class="display-4 text-muted">
+        Listing users in database
+      </div>
+      <table class="table-primary table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">email</th>
+            <th scope="col">username</th>
+            <th scope="col">password hash</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for val in values %}
+          <tr>
+            <td>{{val.id}}</td>
+            <td>{{val.email}}</td>
+            <td>{{val.username}}</td>
+            <td>{{val.password_hash}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</span>
+
+  {{values}}
+{% endblock %}

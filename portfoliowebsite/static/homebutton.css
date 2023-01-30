@@ -1,0 +1,33 @@
+.btn-primary-home {
+  color: rgb(16,16,16);
+  background-color: rgb(0,260,178);
+  opacity: 0.8;
+  box-shadow: 2px 2px 8px grey;
+  height: 55%;
+  width: 220px;
+  font-weight: 350;
+  font-size: 28px;
+  text-align: center;
+  padding: 20px 50px 5px 50px;
+}
+
+.btn-primary-home:hover{
+  background-color: rgb(0,230,178);
+}
+
+.btn-primary-home-suitability {
+  color: rgb(16,16,16);
+  background-color: rgb(0,260,178);
+  opacity: 0.8;
+  box-shadow: 2px 2px 8px grey;
+  height: 55%;
+  width: 220px;
+  font-weight: 350;
+  font-size: 28px;
+  text-align: center;
+  padding: 5px 25px 5px 25px;
+}
+
+.btn-primary-home-suitability:hover{
+  background-color: rgb(0,230,178);
+}
